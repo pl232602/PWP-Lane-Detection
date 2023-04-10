@@ -12,20 +12,18 @@
   </head>
   <body class="modern_font">
     <h1 style="text-align: center">Engineering Society Attendance</h1>
-    <div class="root dualdiv">
+    <div class="root">
       <div>
-        <h1 class="login">Info:</h1>
-        <br>
-        <form class="login" action="" method="post">
-          <input class="login" type="text" placeholder="Name" name="name" value="Name">
-          <input class="login" type="text" placeholder="PL Number" name="plnumber" value="PL Number">
-          <br>
-          <input class="button loginbutton" type="submit" value="Submit">
-        </form>
-        <form class="submitpadding" action="{{url_for('root.create_user')}}" method="get" target="_blank">
-          <button class="button loginbutton" type="submit">Re-Enter Information</button>
+        <h1 class="login info">Info:</h1>
+        <p class="confirmtext">Entered Name: {{content}}</p>
+        <p class="confirmtext">Entered PL Number: {{contents}}</p>
+        <form class="confirmbutton" action="" method="get">
+          <button class="button loginbutton" type="submit" formaction="{{url_for('root.re_enter')}}">Confirm</button>
+          <button class="button loginbutton" type="submit" formaction="{{url_for('root.submit')}}">Cancel</button>
         </form>
       </div>
+      
     </div>
+
   </body>
 </html>

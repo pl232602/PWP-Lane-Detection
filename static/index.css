@@ -29,13 +29,9 @@ html{
 .dark_grey {
     background-color: #272121;
 }
-.logs {
-    min-width: 95%;
-    height: 80%;
-    width:auto;
 
 
-}
+
 .modern_font {
     font-family: sans-serif;
     overflow: hidden;
@@ -70,11 +66,9 @@ html{
     #141310;
 }
 .submitpadding{
-    padding-left: 8px;
+    padding-left: 4px;
+    margin-top: 50px;
 }
-
-
-
 
 .root{
     border-width:0px;
@@ -88,13 +82,33 @@ html{
 
 
 }
+.info{
+    margin-bottom: 21px;
+}
 .loginbutton{
     margin-left:20px;
     margin-right:20px;
-    margin-bottom: 30px;
-    float:inherit;
-    margin-top:50px;
+    margin-bottom: 20px;
+    align-items: center;
+    text-align: center
     ;
+}
+.confirmbutton{
+    text-align: center;
+    margin-top: 30px;
+}
+.confirmtext{
+    font-weight:600;
+    margin-bottom:1px;
+    text-align: center;
+}
+
+.re_enter{
+    text-align: center;
+}
+
+.submitbutton{
+    margin-top: 42px;
 }
 
 div {
