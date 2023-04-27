@@ -1,5 +1,6 @@
 import sqlite3
 from csv import writer,reader
+import hashlib
 
 
 class user(): #creates class that allows the addition of users
@@ -8,7 +9,7 @@ class user(): #creates class that allows the addition of users
         self.con=sqlite3.connect("userstorage.db")
         self.cur=self.con.cursor()
         try: #checks if a user database file exists, and if one doesn't, will create one
-            self.cur.execute("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, username varchar(255), password varchar(255))")
+            self.cur.execute("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, username varchar(255), password varchar(255), salt varchar(255))")
             print("created")
         except:
             print("exists")
@@ -39,4 +40,6 @@ class user(): #creates class that allows the addition of users
         else:
             return False
         
-
+    def credential_hash(self):
+        self.x = hashlib.sha3_256(self.x).hexdigest
+        print("hashed password: ",self.x)

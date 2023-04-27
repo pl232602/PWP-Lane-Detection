@@ -8,13 +8,24 @@
     <meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Driving Assist Web App</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src = "{{ url_for('static', filename = 'set.js') }}"></script>
     <link rel="stylesheet" href="/static/index.css" />
   </head>
   <body class="modern_font">
-    <h1 style="text-align: center">New User Creation</h1>
+    <h1 style="text-align: center">Driving Assist Web App</h1>
     <div class="root dualdiv">
       <div>
-        <h1 class="re_enter">Entry Placeholder</h1>
+        <h1 class="login">New User Creation</h1>
+        <br>
+        <form name="new_user_form" class="login" action="" method="post" onsubmit="return validateForm()">
+          <p class="createusertext">Enter New Username:</p>
+          <input class="login" type="text" placeholder="Username" name="username" value="{{request.form.username }}" >
+          <p class="createusertext">Enter New Password:</p>
+          <input class="login" type="password" placeholder="Password" name="password" value="{{request.form.password }}" >
+          <br>
+          <input id="user_creation_button" class="button loginbutton" type="submit" value="Create" onClick="userCreated()">
+        </form>
       </div>
     </div>
   </body>

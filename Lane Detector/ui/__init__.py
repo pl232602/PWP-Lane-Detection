@@ -1,6 +1,7 @@
 import flask
 import hashlib
 from flask import render_template, redirect, url_for, request
+from loginapi import user
 
 
 root= flask.Blueprint("root",__name__)
@@ -16,7 +17,12 @@ def submit():
         return render_template("webapp.html",content=name, contents=pl)
     return render_template("login.html")
 
-
 @root.route("/re_enter",methods=["GET","POST"])
 def re_enter():
     return render_template("re_enter.html")
+
+@root.route("/create_user",methods=['GET','POST'])
+def create_user():
+    if request.method=="POST":
+        adduser=user([request.form["username"],request.form["password"]])
+        adduser.credential_hash()
