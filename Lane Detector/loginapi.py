@@ -1,6 +1,7 @@
 import sqlite3
 from csv import writer,reader
 import hashlib
+import secrets
 
 
 class user(): #creates class that allows the addition of users
@@ -14,19 +15,18 @@ class user(): #creates class that allows the addition of users
         except:
             print("exists")
 
-
     def add_user(self): #adds username and passwored entered on user creation page to sqlite3 managed database
         print(self.x)
         print("working")
-        checker=self.cur.execute("SELECT * FROM users WHERE username = ? AND password=?",(self.x))
+        checker=self.cur.execute("SELECT * FROM users WHERE username = ? AND password=? AND salt=?",(self.x))
         print("this is checker:")
         length=len(checker.fetchall())
         if  length > 0:
             print("checker is false")
             return False
-        self.cur.execute("""INSERT INTO users (username,password) VALUES
+        self.cur.execute("""INSERT INTO users (username,password,salt) VALUES
 
-        (?,?)
+        (?,?,?)
 
         """,(self.x))
         self.con.commit()
@@ -41,5 +41,13 @@ class user(): #creates class that allows the addition of users
             return False
         
     def credential_hash(self):
-        self.x = hashlib.sha3_256(self.x).hexdigest
-        print("hashed password: ",self.x)
+        salt=secrets.randbits(32)
+        salt_string=str(salt)
+        salted_password=(self.x[1] + salt_string)
+        encoded_password=salted_password.encode("UTF-8")
+        print(encoded_password)
+        hashed_password = hashlib.sha3_256(encoded_password).hexdigest()
+        print("hashed password: ",hashed_password)
+        self.x[1]=hashed_password
+        self.x.append(salt_string)
+        print(self.x)

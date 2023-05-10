@@ -17,12 +17,13 @@ def submit():
         return render_template("webapp.html",content=name, contents=pl)
     return render_template("login.html")
 
-@root.route("/re_enter",methods=["GET","POST"])
-def re_enter():
-    return render_template("re_enter.html")
-
 @root.route("/create_user",methods=['GET','POST'])
 def create_user():
     if request.method=="POST":
         adduser=user([request.form["username"],request.form["password"]])
+        print([request.form["username"],request.form["password"]])
         adduser.credential_hash()
+        adduser.add_user()
+        if adduser.add_user():
+            print(:)
+    return render_template("create_user.html")
