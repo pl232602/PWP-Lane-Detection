@@ -30,7 +30,9 @@ html{
     background-color: #272121;
 }
 
-
+.centering{
+    text-align: center;
+}
 
 .modern_font {
     font-family: sans-serif;

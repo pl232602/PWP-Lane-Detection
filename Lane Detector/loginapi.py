@@ -16,9 +16,8 @@ class user(): #creates class that allows the addition of users
             print("exists")
 
     def add_user(self): #adds username and passwored entered on user creation page to sqlite3 managed database
-        print(self.x)
-        print("working")
-        checker=self.cur.execute("SELECT * FROM users WHERE username = ?",(self.x[0]))
+        checker=self.cur.execute("SELECT * FROM users WHERE username = ?",(self.x[0],))
+        print(checker.fetchall())
         print("this is checker:")
         length=len(checker.fetchall())
         if  length > 0:

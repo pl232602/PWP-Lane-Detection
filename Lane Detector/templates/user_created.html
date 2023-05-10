@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Driving Assist Web App</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src = "{{ url_for('static', filename = 'set.js') }}"></script>
+    <link rel="stylesheet" href="/static/index.css" />
+  </head>
+  <body class="modern_font">
+    <h1 style="text-align: center">Driving Assist Web App</h1>
+    <div class="root dualdiv">
+      <div>
+        <h1 class="login">User Successfully Created</h1>
+      </div>
+      <form class="submitpadding" action="{{url_for('root')}}" method="get">
+        <button class="button loginbutton" type="submit">Return to Login</button>
+      </form>
+    </div>
+  </body>
+</html>

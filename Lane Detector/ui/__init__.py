@@ -24,8 +24,13 @@ def create_user():
         print([request.form["username"],request.form["password"]])
         adduser.credential_hash()
         adduser.add_user()
-        if adduser.add_user():
-            print("user in not database")
+        if adduser.add_user() == False:
+            return render_template("user_exists.html")
         else:
-            print("user is in database")
+            return render_template("user_created.html")
     return render_template("create_user.html")
+
+@root.route("/user_exists",methods=["GET","POST"])
+def user_exists():
+    if request.method=="POST":
+        return render_template("create_user.html")
