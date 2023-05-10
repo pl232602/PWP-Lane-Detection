@@ -25,5 +25,7 @@ def create_user():
         adduser.credential_hash()
         adduser.add_user()
         if adduser.add_user():
-            print(:)
+            print("user in not database")
+        else:
+            print("user is in database")
     return render_template("create_user.html")
