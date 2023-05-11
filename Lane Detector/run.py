@@ -1,5 +1,5 @@
 from flask import Flask
-from .camera_provider import camera_provider
+from camera_provider import camera_blueprint
 from ui import root
 
 app = Flask(__name__)
