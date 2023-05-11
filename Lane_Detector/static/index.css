@@ -78,6 +78,9 @@ html{
     margin:auto;
 }
 
+.driving_window{
+    max-width:fit-content
+}
 
 .login{
     text-align: center;

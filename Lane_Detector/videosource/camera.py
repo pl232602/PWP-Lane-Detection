@@ -4,7 +4,7 @@ import io
 
 
 def gen_frames(): #generate frames from video source 0 (usually webcam)
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(r"C:\Users\Niles Alexis\Documents\Engineering Attendnace\Lane_Detector\trim.1D93402D-59BA-4888-9061-4CF2C9E0F62C.MOV")
     i=0
     while i==0:
         ret, local_frame = cap.read()
