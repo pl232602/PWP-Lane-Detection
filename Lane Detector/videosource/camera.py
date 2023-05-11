@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import io
-from threading import coniditon
+
 
 def gen_frames(): #generate frames from video source 0 (usually webcam)
     cap = cv2.VideoCapture(0)
