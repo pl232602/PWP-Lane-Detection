@@ -17,9 +17,11 @@ class user(): #creates class that allows the addition of users
 
     def add_user(self): #adds username and passwored entered on user creation page to sqlite3 managed database
         checker=self.cur.execute("SELECT * FROM users WHERE username = ?",(self.x[0],))
-        print(checker.fetchall())
+        full_table=checker.fetchall()
         print("this is checker:")
-        length=len(checker.fetchall())
+        print(full_table)
+        length=len(full_table)
+        print(length)
         if  length > 0:
             print("checker is false")
             return False
@@ -31,10 +33,17 @@ class user(): #creates class that allows the addition of users
         self.con.commit()
 
     def check_user(self): #checks if entered credentials are present in database
-        checker=self.cur.execute("SELECT * FROM users WHERE username = ? AND password=?",(self.x))
+        checker=self.cur.execute("SELECT * FROM users WHERE username = ?",(self.x[0],))
         print("this is checker:")
-        print(checker)
-        if checker.fetchall() != []:
+        entry=checker.fetchall()
+        salt=entry[0][3]
+        salted_password=(self.x[1]+salt)
+        encoded_password=salted_password.encode("UTF-8")
+        print(encoded_password)
+        hashed_password = hashlib.sha3_256(encoded_password).hexdigest()
+        print(hashed_password)
+        print(entry[0][2])
+        if hashed_password == entry[0][2]:
             return True
         else:
             return False
