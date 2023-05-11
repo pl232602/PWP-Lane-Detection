@@ -35,7 +35,10 @@ class user(): #creates class that allows the addition of users
         checker=self.cur.execute("SELECT * FROM users WHERE username = ?",(self.x[0],))
         print("this is checker:")
         entry=checker.fetchall() #retrieve database entry with matching username
-        salt=entry[0][3] #retireved stored salt
+        try:
+            salt=entry[0][3] #retireved stored salt
+        except:
+            return False
         salted_password=(self.x[1]+salt) #re-salt password
         encoded_password=salted_password.encode("UTF-8") #re-encode password
         print(encoded_password)
