@@ -1,7 +1,7 @@
 import flask
 from flask import Response
 
-from Lane_Detector.videosource.camera import gen_localhttp_res
+from camera import gen_localhttp_res
 
 camera_blueprint = flask.Blueprint('camera_blueprint', __name__, url_prefix='/camera') #creates flask blueprint for camera components to be registered with flask app
 
