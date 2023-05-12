@@ -1,7 +1,7 @@
 body {
     background-color: 
-    #272822;
-    color:#f0a600;
+    #192428;
+    color:#ffffff;
     }
 html{
     overflow:auto;
@@ -45,37 +45,38 @@ html{
 
 }
 .button {
-    background-color: #f0a600;
+    background-color: #315981ad;
     border: none;
-    color: #272121;
-    padding:5px;
+    color: #ffffff;
+    padding:15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1.2em;
     cursor: pointer;
-    border-radius:11px;
+    border-radius:16px;
     margin-left:20px;
     margin-top:13px;
     font-weight: 600;
     transition:.3s;
-    padding:7px;
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
   }
 .button:hover{
     background-color: 
-    #e55721;
+    #1B1F3A;
     color: 
-    #141310;
+    #ffffff;
 }
 .submitpadding{
     padding-left: 4px;
-    margin-top: 50px;
+    margin-top: -9px;
 }
 
 .root{
     border-width:0px;
     max-width:99%;
     margin:auto;
+    margin:-19px;
 }
 
 .driving_window{
@@ -118,12 +119,52 @@ html{
 
 div {
 
-    border-radius: 10px;
+    border-radius: 22px;
     overflow:hidden;
 	width: auto;
-    border:10px;
-    border-style:solid;
-    border-width: 1px;
-    border-color:rgb(240,166,0);
-
+    margin:auto;
+    max-width: 65%;
 }
+h1 {
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+.inner_div{
+    background-color:#2d383c;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    transition:0.2s;
+    margin-top:30px;
+    margin-bottom:30px;
+    max-width: 700px;
+}
+.inner_div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+  }
+
+input {
+    border-radius: 6px;
+    border-width:0px;
+    background-color:#315981ad;
+    padding:6px;
+    color:#ffffff;
+    margin-left:1px;
+    margin-right:1px;
+    
+}
+
+input[type=text]{
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+input[type=password]{
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+input::placeholder{
+    color:#ffffff;
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+
+
+
