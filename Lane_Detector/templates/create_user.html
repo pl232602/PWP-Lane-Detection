@@ -15,9 +15,8 @@
   <body class="modern_font">
     <h1 style="text-align: center">Driving Assist Web App</h1>
     <div class="root dualdiv">
-      <div>
+      <div class="inner_div">
         <h1 class="login">New User Creation</h1>
-        <br>
         <form name="new_user_form" class="login" action="" method="post" onsubmit="return validateForm()">
           <p class="createusertext">Enter New Username:</p>
           <input class="login" type="text" placeholder="Username" name="username" value="{{request.form.username }}" >
