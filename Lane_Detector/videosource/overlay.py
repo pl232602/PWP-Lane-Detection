@@ -1,13 +1,20 @@
 import cv2
 import numpy as np
 import io
-from threading import coniditon
-from camera.camera import gen_frames
+from videosource import camera
 import pandas
 import imutils
 
 def gen_overlay():
-    #generate an overlay based on the data from object detection
+    for local_frame in camera.gen_frames():#generate an overlay based on the data from object detection
+        overlay_frame=local_frame
+        lower=np.array([0,0,0])
+        i=95
+        upper=np.array([i,i,i])
+        overlay_frame = cv2.inRange(overlay_frame,lower,upper)
+        
+        yield (overlay_frame)
+
     pass
 def obstacle_locator():
     #detect and generate objects and get a rectangular location for them
