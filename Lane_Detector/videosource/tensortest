@@ -1,0 +1,13 @@
+import cv2
+cap = cv2.VideoCapture(r"C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvid9.MOV")
+
+i=0
+while i==0:
+    ret, frame = cap.read()
+
+    if ret == True:
+        
+        cv2.imshow('Output',frame)
+        
+    if cv2.waitKey(25) & 0xFF == ord('q'):
+            break

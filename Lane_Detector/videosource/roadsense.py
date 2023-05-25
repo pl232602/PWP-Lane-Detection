@@ -1,11 +1,10 @@
 import numpy as np
 import cv2
 from skimage import transform
-from moviepy.editor import VideoFileClip
 from tensorflow import keras
 
 
-model = keras.models.load_model(r'/home/nilesosa/Documents/TensorFlow/TensorFlow/model.h5')
+model = keras.models.load_model(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\model.h5')
 
 class Lanes():
     def __init__(self):
@@ -37,7 +36,7 @@ def road_lines(image):
 
 
 lanes = Lanes()
-cap = cv2.VideoCapture(r"/home/nilesosa/Documents/TensorFlow/TensorFlow/realvid9.MOV")
+cap = cv2.VideoCapture(r"C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvid9.MOV")
 i=0
 
 positive_slope = []
@@ -263,7 +262,7 @@ while i==0:
 
             my2 = y2_roi-y1_roi
 
-            if (nx2 < px1) and (((px1+px2)/2-(nx1+nx2)/2) < 700 and ((px1+px2)/2-(nx1+nx2)/2) > 150):
+            if (nx2 < px1) and (((px1+px2)/2-(nx1+nx2)/2) < 600 and ((px1+px2)/2-(nx1+nx2)/2) >300) and (len(negative_slope)>0 or len(positive_slope)>0):
                 cv2.line(void, (int(px1), int(py1)), (int(px2), int(py2)), (255, 0, 255), 4)
                 cv2.line(frame, (int(px1+x1_roi), int(py1+y1_roi)), (int(px2+x1_roi), int(py2+y1_roi)), (0, 0, 255), 4)
             
@@ -282,7 +281,7 @@ while i==0:
 
             
         except ZeroDivisionError:
-            if (nx2 < px1 and ((px1+px2)/2-(nx1+nx2)/2) < 700 and ((px1+px2)/2-(nx1+nx2)/2) > 150):
+            if (nx2 < px1 and ((px1+px2)/2-(nx1+nx2)/2) < 600 and ((px1+px2)/2-(nx1+nx2)/2) > 300) and (len(negative_slope)>0 or len(positive_slope)>0):
                 mx1 = (nx2+px1)/2
 
                 my1 = (y2_roi-y1_roi)*.25
@@ -297,7 +296,6 @@ while i==0:
                 cv2.line(frame, (int(nx1+x1_roi), int(ny1+y1_roi)), (int(nx2+x1_roi), int(ny2+y1_roi)), (0, 0, 255), 4)
                 cv2.line(frame, (int(mx1+x1_roi), int(my1+y1_roi)), (int(mx2+x1_roi), int(my2+y1_roi)), (0, 255, 255), 4)
 
-
         except TypeError:
             pass
             
@@ -308,7 +306,7 @@ while i==0:
         
 
         cv2.imshow('Output',frame)
-        cv2.imshow("Region Of Interest",mask)
+        cv2.imshow("Region Of Interest",void)
         
     if cv2.waitKey(25) & 0xFF == ord('q'):
             break
