@@ -333,12 +333,6 @@ def gen_overlay():
         yield (overlay_frame)
 
     pass
-def obstacle_locator():
-    #detect and generate objects and get a rectangular location for them
-    pass
-def pathway():
-    #detect the location of the center line, sides, and offshoots (possible turns), and turn detection (depending on type of road detected)
-    pass
 
 def gen_rotation(): #tepmlate code for compass rotation
     while True:
