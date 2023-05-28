@@ -5,7 +5,7 @@ from videosource import overlay
 
 
 def gen_frames(): #generate frames from video source 0 (usually webcam)
-    cap = cv2.VideoCapture(r"/home/nilesosa/Documents/PWP/PWP-Lane-Detection/Lane_Detector/videosource/lanes_clip.mp4")
+    cap = cv2.VideoCapture(r"C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvid9.MOV")
     i=0
     while i==0:
         ret, local_frame = cap.read()
