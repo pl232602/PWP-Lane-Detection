@@ -4,7 +4,7 @@ body {
     color:#ffffff;
     }
 html{
-    overflow:auto;
+    overflow:hidden;
 }
 .quad-grid {
     display: grid;
@@ -18,7 +18,7 @@ html{
 .tri-grid {
     display: grid;
     width: 100%;
-    height: 40rem;
+    height: 50rem;
     grid-template-columns: 1fr 2fr 1fr;
     grid-gap: 20px;
 }
@@ -69,7 +69,7 @@ html{
     margin-top:13px;
     font-weight: 600;
     transition:.3s;
-    font-family: Verdana, sans-serif;
+    font-family: 'Segoe UI',SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
     padding-bottom:10px;
     padding-top:10px;
   }
@@ -103,8 +103,11 @@ html{
 
 .assist_title{
     text-align: center;
-    padding-bottom: 10px;
-    padding-inline: 20px;
+    padding-inline: 30px;
+}
+
+.assist_text{
+    margin: 25px;
 }
 
 .info{
@@ -146,7 +149,7 @@ div {
     max-width: 65%;
 }
 h1 {
-    font-family: Verdana, sans-serif;
+    font-family: 'Segoe UI',SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .inner_div{
     background-color: #1d2528;
@@ -219,11 +222,15 @@ input[type=password]:hover{
 
 input::placeholder{
     color:#ffffff;
-    font-family: Verdana, sans-serif;
+    font-family: 'Segoe UI',SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+p{
+    font-family: 'Segoe UI',SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;  
 }
 
 .createusertext{
-    font-family: Verdana, sans-serif;
+    font-family: 'Segoe UI',SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight:600;
 }
 
