@@ -3,9 +3,8 @@ from videosource import roadsense
 
 def gen_overlay():
     for local_frame in camera.gen_frames():#generate an overlay based on the data from object detection
-
-        ##overlay_frame=roadsense.roadsense(local_frame)
-        overlay_frame = local_frame  
+        overlay_frame = roadsense.roadsense(local_frame)
+ 
         yield (overlay_frame)
 
     pass

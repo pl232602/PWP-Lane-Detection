@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
-from skimage import transform
 from tensorflow import keras
+
+
 
 
 model = keras.models.load_model(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\model.h5')
@@ -36,40 +37,92 @@ def road_lines(image):
 
 lanes = Lanes()
 cap = cv2.VideoCapture(r"C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvid9.MOV")
- 
-i=0
+
+global positive_slope
+global negative_slope
+global positive_slope_total
+global negative_slope_total
+global positive_slope_avg
+global negative_slope_avg
+
+positive_slope = []
+negative_slope = []
+
+positive_slope_total = 0
+negative_slope_total = 0
+
+positive_slope_avg = 0
+negative_slope_avg = 0
+
+global px1_total
+global px2_total
+global py1_total
+global py2_total
+
+px1_total = 0
+px2_total = 0
+py1_total = 0
+py2_total = 0
+
+global mx1_total
+global nx2_total
+global ny1_total
+global ny2_total
+
+nx1_total = 0
+nx2_total = 0
+ny1_total = 0
+ny2_total = 0
+
+global px1
+global px2
+global py1
+global py2
+
+px1 = 0
+px2 = 0
+py1 = 0
+py2 = 0
+
+global nx1
+global nx2
+global ny1
+global ny2
+
+nx1 = 0
+nx2 = 0
+ny1 = 0
+ny2 = 0
+
 
 def roadsense(frame):
-    i=0
+    
+    global positive_slope
+    global negative_slope
+    global positive_slope_total
+    global negative_slope_total
+    global positive_slope_avg
+    global negative_slope_avg
 
-    positive_slope = []
-    negative_slope = []
+    global px1_total
+    global px2_total
+    global py1_total
+    global py2_total
 
-    positive_slope_total = 0
-    negative_slope_total = 0
+    global nx1_total
+    global nx2_total
+    global ny1_total
+    global ny2_total
 
-    positive_slope_avg = 0
-    negative_slope_avg = 0
+    global px1
+    global px2
+    global py1
+    global py2
 
-    px1_total = 0
-    px2_total = 0
-    py1_total = 0
-    py2_total = 0
-
-    nx1_total = 0
-    nx2_total = 0
-    ny1_total = 0
-    ny2_total = 0
-
-    px1 = 0
-    px2 = 0
-    py1 = 0
-    py2 = 0
-
-    nx1 = 0
-    nx2 = 0
-    ny1 = 0
-    ny2 = 0
+    global nx1
+    global nx2
+    global ny1
+    global ny2
 
     frame = cv2.resize(frame,(1280,720))
     natural_frame = frame
@@ -152,7 +205,6 @@ def roadsense(frame):
     lines = cv2.HoughLines(edges, 1, np.pi/180, 60)
 
     void = np.zeros((y2_roi-y1_roi,x2_roi-x1_roi,3))
-
 
     if len(positive_slope) != 0:
         px1_total = 0
@@ -297,10 +349,7 @@ def roadsense(frame):
 
     except TypeError:
         pass
-        
-
-
-        
-
+    
     return frame
+
 
