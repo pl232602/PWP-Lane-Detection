@@ -82,7 +82,7 @@ while i==0:
         dilated = dilated.astype(np.uint8)
         dilated = cv2.cvtColor(dilated,cv2.COLOR_BGR2GRAY)
         contours, hierarchy = cv2.findContours(dilated,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
-        print("tingz:")
+        ##print("tingz:")
         contour_length = []
         contour_exists = True
 
@@ -102,7 +102,7 @@ while i==0:
             else:
                 main_contour2 = contour_length.index(max(contour_length))
 
-            print(main_contour)
+            ##print(main_contour)
             hull0 = cv2.convexHull(contours[main_contour])
             hull1 = cv2.convexHull(contours[main_contour2])
             hull = np.vstack([hull0, hull1])
@@ -118,6 +118,7 @@ while i==0:
             cv2.drawContours(frame,[box],-1,(33,87,229),3)
             tester = cv2.drawContours(frame,[hull],-1,(33,87,229),3)
         
+        print(box)
         
 
         y1_roi = 0
@@ -141,7 +142,7 @@ while i==0:
         
 
         blue,green,red = cv2.split(roi)
-        print(blue)
+        ##print(blue)
         lower = np.array([220])
         upper = np.array([255])
 
@@ -186,7 +187,7 @@ while i==0:
                 y1 = int(y0 + 1000*(a))
                 x2 = int(x0 - 1000*(-b))
                 y2 = int(y0 - 1000*(a))
-                print(x1,y1,x2,y2)
+                ##print(x1,y1,x2,y2)
                 try:
                     m1=(y2-y1)/(x2-x1)
                     t=0.6
@@ -240,9 +241,9 @@ while i==0:
             nx2 = nx2_total/len(negative_slope)
             ny1 = ny1_total/len(negative_slope)
             ny2 = ny2_total/len(negative_slope)
-            print("length",len(negative_slope))
+            ##print("length",len(negative_slope))
 
-            print(nx1,nx2,ny1,ny2,negative_slope_avg)
+            ##print(nx1,nx2,ny1,ny2,negative_slope_avg)
             negative_slope_avg = negative_slope_total/len(negative_slope)
 
             ny2 = (y2_roi-y1_roi)*.25

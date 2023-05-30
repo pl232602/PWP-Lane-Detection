@@ -94,6 +94,10 @@ nx2 = 0
 ny1 = 0
 ny2 = 0
 
+global box
+
+box = 0
+
 
 def roadsense(frame):
     
@@ -124,6 +128,8 @@ def roadsense(frame):
     global ny1
     global ny2
 
+    global box
+
     frame = cv2.resize(frame,(1280,720))
     natural_frame = frame
     frame = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
@@ -135,7 +141,7 @@ def roadsense(frame):
     dilated = dilated.astype(np.uint8)
     dilated = cv2.cvtColor(dilated,cv2.COLOR_BGR2GRAY)
     contours, hierarchy = cv2.findContours(dilated,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
-    print("tingz:")
+    ##print("tingz:")
     contour_length = []
     contour_exists = True
 
@@ -155,7 +161,7 @@ def roadsense(frame):
         else:
             main_contour2 = contour_length.index(max(contour_length))
 
-        print(main_contour)
+        ##print(main_contour)
         hull0 = cv2.convexHull(contours[main_contour])
         hull1 = cv2.convexHull(contours[main_contour2])
         hull = np.vstack([hull0, hull1])
@@ -194,7 +200,7 @@ def roadsense(frame):
     
 
     blue,green,red = cv2.split(roi)
-    print(blue)
+    ##print(blue)
     lower = np.array([220])
     upper = np.array([255])
 
@@ -238,7 +244,7 @@ def roadsense(frame):
             y1 = int(y0 + 1000*(a))
             x2 = int(x0 - 1000*(-b))
             y2 = int(y0 - 1000*(a))
-            print(x1,y1,x2,y2)
+            ##print(x1,y1,x2,y2)
             try:
                 m1=(y2-y1)/(x2-x1)
                 t=0.6
@@ -292,9 +298,9 @@ def roadsense(frame):
         nx2 = nx2_total/len(negative_slope)
         ny1 = ny1_total/len(negative_slope)
         ny2 = ny2_total/len(negative_slope)
-        print("length",len(negative_slope))
+        ##print("length",len(negative_slope))
 
-        print(nx1,nx2,ny1,ny2,negative_slope_avg)
+        ##print(nx1,nx2,ny1,ny2,negative_slope_avg)
         negative_slope_avg = negative_slope_total/len(negative_slope)
 
         ny2 = (y2_roi-y1_roi)*.25

@@ -51,16 +51,49 @@ def run_inference_for_single_image(model, image):
     
     return output_dict
 
+#for use with acutal videostream
+def run_arrow_inference(model, image, secondary_image):
+    image_np = image
+    second_image = secondary_image
+    output_dict = run_inference_for_single_image(model, image_np)
+    detection_class='null'
+    for detection in output_dict['detection_scores']:
+            if detection > 0.3:
+                detection_index = 0
+                print('first',detection_index)
+                for i in output_dict['detection_scores']:
+                    if i == detection:
+                        break
+                    detection_index = detection_index + 1
+                print('index',detection_index)
+                print(output_dict['detection_boxes'][0])
+                proportional_size = output_dict['detection_boxes'][detection_index]
+                h,w,c = second_image.shape
+                print(proportional_size)
+                print(h,w,c) 
+                y1 = int(h*proportional_size[0])
+                x1 = int(w*proportional_size[1])
+                y2 = int(h*proportional_size[2])
+                x2 = int(w*proportional_size[3])
+                print(x1,y1,x2,y2)
+                print(output_dict['detection_scores'])
+                second_image = cv2.rectangle(second_image,(x1,y1),(x2,y2),(255,0,0),5)
+                detection_class = output_dict['detection_classes'][detection_index]
+                print('Detection class',detection_class)
+                if detection_class == 1:
+                    detection_class = 'left'
+                elif detection_class == 2:
+                    detection_class = 'right'
+    return second_image, detection_class
 
+#for use testing
 def run_inference(model, category_index, cap):
     while cap.isOpened():
         ret, image_np = cap.read()
         if not ret:
             break
 
-        # Actual detection.
         output_dict = run_inference_for_single_image(model, image_np)
-        # Visualization of the results of a detection.
         vis_util.visualize_boxes_and_labels_on_image_array(
             image_np,
             output_dict['detection_boxes'],
@@ -105,8 +138,8 @@ def run_inference(model, category_index, cap):
 
 
 # python .\detect_from_video.py -m ssd_mobilenet_v2_320x320_coco17_tpu-8\saved_model -l .\data\mscoco_label_map.pbtxt -v .\myVideo.mp4
-detection_model = load_model(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\arrow_detection_model')
-category_index = label_map_util.create_category_index_from_labelmap(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\arrow_detection_model\arrowlabelmap.pbtxt', use_display_name=True)
-cap = cv2.VideoCapture(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvid9.MOV')
-run_inference(detection_model, category_index, cap)
+#detection_model = load_model(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\arrow_detection_model')
+#category_index = label_map_util.create_category_index_from_labelmap(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\arrow_detection_model\arrowlabelmap.pbtxt', use_display_name=True)
+#cap = cv2.VideoCapture(r'C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvid9.MOV')
+#run_inference(detection_model, category_index, cap)
 
