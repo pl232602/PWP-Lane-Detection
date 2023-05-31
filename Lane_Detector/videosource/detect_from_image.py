@@ -77,9 +77,9 @@ def run_inference_for_single_image(model, image):
 
 
 def run_inference(model, category_index, image_path):
-    print('shit')
+    print('working')
     if os.path.isdir(image_path):
-        print('fuck')
+        print('working')
         image_paths = []
         for file_extension in ('*.png', '*jpg'):
             image_paths.extend(glob.glob(os.path.join(image_path, file_extension)))
@@ -106,7 +106,7 @@ def run_inference(model, category_index, image_path):
             # plt.show()
             plt.savefig(r"/home/nilesosa/Documents/outputs/detection_output{}.png".format(i))  # make sure to make an outputs folder
             i = i + 1
-            print('fuck')
+            print('working')
         else:
             image_np = load_image_into_numpy_array(image_path)
             # Actual detection.
@@ -121,7 +121,7 @@ def run_inference(model, category_index, image_path):
                 instance_masks=output_dict.get('detection_masks_reframed', None),
                 use_normalized_coordinates=True,
                 line_thickness=8)
-            print('fuck')
+            print('working')
             plt.imshow(image_np)
             plt.show()
 
