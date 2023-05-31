@@ -99,7 +99,7 @@ global box
 box = 0
 
 
-def roadsense(frame):
+def roadsense(input_frame):
     
     global positive_slope
     global negative_slope
@@ -130,6 +130,7 @@ def roadsense(frame):
 
     global box
 
+    frame = input_frame
     frame = cv2.resize(frame,(1280,720))
     natural_frame = frame
     frame = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
@@ -146,7 +147,7 @@ def roadsense(frame):
     contour_exists = True
 
     for s in contours:
-        contour_length.append(len(s))
+            contour_length.append(len(s))
     try:
         main_contour = contour_length.index(max(contour_length))
         contour_length.remove(contour_length[main_contour])
@@ -177,6 +178,7 @@ def roadsense(frame):
         cv2.drawContours(frame,[box],-1,(33,87,229),3)
         tester = cv2.drawContours(frame,[hull],-1,(33,87,229),3)
     
+    print(box)
     
 
     y1_roi = 0
@@ -211,6 +213,7 @@ def roadsense(frame):
     lines = cv2.HoughLines(edges, 1, np.pi/180, 60)
 
     void = np.zeros((y2_roi-y1_roi,x2_roi-x1_roi,3))
+
 
     if len(positive_slope) != 0:
         px1_total = 0
@@ -319,7 +322,7 @@ def roadsense(frame):
 
         my2 = y2_roi-y1_roi
 
-        if (nx2 < px1) and (((px1+px2)/2-(nx1+nx2)/2) < 600 and ((px1+px2)/2-(nx1+nx2)/2) >300) and (len(negative_slope)>0 or len(positive_slope)>0):
+        if (nx2 < px1) and (((px1+px2)/2-(nx1+nx2)/2) < 700 and ((px1+px2)/2-(nx1+nx2)/2) > 150):
             cv2.line(void, (int(px1), int(py1)), (int(px2), int(py2)), (255, 0, 255), 4)
             cv2.line(frame, (int(px1+x1_roi), int(py1+y1_roi)), (int(px2+x1_roi), int(py2+y1_roi)), (0, 0, 255), 4)
         
@@ -338,7 +341,7 @@ def roadsense(frame):
 
         
     except ZeroDivisionError:
-        if (nx2 < px1 and ((px1+px2)/2-(nx1+nx2)/2) < 600 and ((px1+px2)/2-(nx1+nx2)/2) > 300) and (len(negative_slope)>0 or len(positive_slope)>0):
+        if (nx2 < px1 and ((px1+px2)/2-(nx1+nx2)/2) < 700 and ((px1+px2)/2-(nx1+nx2)/2) > 150):
             mx1 = (nx2+px1)/2
 
             my1 = (y2_roi-y1_roi)*.25
@@ -353,9 +356,16 @@ def roadsense(frame):
             cv2.line(frame, (int(nx1+x1_roi), int(ny1+y1_roi)), (int(nx2+x1_roi), int(ny2+y1_roi)), (0, 0, 255), 4)
             cv2.line(frame, (int(mx1+x1_roi), int(my1+y1_roi)), (int(mx2+x1_roi), int(my2+y1_roi)), (0, 255, 255), 4)
 
+
     except TypeError:
         pass
+        
+
+
+        
+
     
+
     return frame
 
 

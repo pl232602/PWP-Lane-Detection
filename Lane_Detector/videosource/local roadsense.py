@@ -35,7 +35,7 @@ def road_lines(image):
 
 
 lanes = Lanes()
-cap = cv2.VideoCapture(r"C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvid9.MOV")
+cap = cv2.VideoCapture(r"C:\Users\Niles Alexis\Documents\PWP Lane Detection\PWP-Lane-Detection\Lane_Detector\videosource\realvind.MOV")
 i=0
 
 positive_slope = []

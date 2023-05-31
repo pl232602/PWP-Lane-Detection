@@ -31,6 +31,7 @@ def gen_object_detection():
             cv2.putText(layered_frame,'No Turn Lane Detected',(50,50),font,1,(255,255,255),3)
        
         print('current lane status',lane_status)
+        layered_frame = overlay_frame
         yield(layered_frame)
 
 

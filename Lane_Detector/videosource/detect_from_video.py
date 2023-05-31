@@ -58,7 +58,7 @@ def run_arrow_inference(model, image, secondary_image):
     output_dict = run_inference_for_single_image(model, image_np)
     detection_class='null'
     for detection in output_dict['detection_scores']:
-            if detection > 0.3:
+            if detection > 0.35:
                 detection_index = 0
                 print('first',detection_index)
                 for i in output_dict['detection_scores']:
